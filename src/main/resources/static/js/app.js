@@ -35,13 +35,16 @@
 
 
   app.service('AuthService', function($http){
+    // bad var names.. "loggedUser" is set to the full http response
         var loggedUser = null;
 
         function login (username, password){
-            return $http.post("api/login", {username: username, password: password}).then(function(user){
-                loggedUser = user;
+            return $http.post("api/login", {username: username, password: password}).then(function(response){
+                loggedUser = response;
+                return response;
             }, function(error){
                 loggedUser = null;
+                return response;
             })
         }
 
@@ -63,12 +66,18 @@
     };
 
     $scope.login = function(){
-        AuthService.login($scope.login.username, $scope.login.password).then(function(user){
-            console.log(user);
-            $location.path("/");
+        AuthService.login($scope.login.username, $scope.login.password).then(function(data){
+            console.log(data);
+
+            if(data["status"] == 401){
+                $scope.invalidCreds = true;
+            } else if(data["status"] == 200) {
+                $location.path("/");
+            }
+
         }, function(error){
             console.log(error);
-            $scope.invalidCreds = true;
+            
         });
     };
   });

@@ -1,21 +1,35 @@
-<h1>Login</h1>
+<md-content layout-padding>
 
-<form>
-    <md-input-container>
-        <label>Username</label>
-        <input type="text" ng-model="login.username" required>
-    </md-input-container>
+    <h1>Login</h1>
 
-    <md-input-container>
-        <label>Password</label>
-        <input type="text" ng-model="login.password" required>
-    </md-input-container>
+    <form>
+        <div layout="row">
+            <md-input-container>
+                <label>Username</label>
+                <input type="text" ng-model="login.username" required>
+                <div ng-messages="login.username.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>      
+            </md-input-container>
+        </div>
 
-    <p style="color:red" ng-show="invalidCreds">Invalid credentials</p>
+        <div layout="row">
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="login.password" required>
+                <div ng-messages="login.password.$error">
+                    <div ng-message="required">This is required.</div>
+                </div>
+            </md-input-container>
+        </div>
 
-    <div class="action-buttons">
-        <md-button ng-click="login()">
-            Login
-        </md-button>
-    </div>
-</form>
+        <div layout="row">
+            <p style="color:red" ng-show="invalidCreds">Invalid credentials</p>
+        </div>
+        <div class="action-buttons">
+            <md-button ng-click="login()">
+                Login
+            </md-button>
+        </div>
+    </form>
+</md-content>

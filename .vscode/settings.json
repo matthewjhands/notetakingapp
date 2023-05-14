@@ -1,0 +1,5 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "maven.terminal.useJavaHome": true
+    "java.home": "C:\\Program Files\\Zulu\\zulu-8\\"
+}
