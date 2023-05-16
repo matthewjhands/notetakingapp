@@ -3,21 +3,30 @@
 <form>
     <md-input-container>
         <label>Name</label>
-        <input type="text" ng-model="color" required md-maxlength="10">
+        <input type="text" ng-model="selectedNote.title" required md-maxlength="10">
+        <div ng-messages="selectedNote.title.$error">
+            <div ng-message="required">This is required.</div>
+        </div>   
     </md-input-container>
 
     <md-input-container>
         <label>Note text</label>
-        <textarea class="note-body" ng-model="note" rows="10" required md-maxlength="500">
+        <textarea class="note-body" ng-model="selectedNote.body" rows="10" required md-maxlength="500">
                 </textarea>
+        <div ng-messages="selectedNote.body.$error">
+            <div ng-message="required">This is required.</div>
+        </div>   
     </md-input-container>
 
     <div class="action-buttons">
-        <md-button>
+        <md-button ng-click="saveNote()" type="submit" ng-disabled="(selectedNote.title.$dirty && selectedNote.title.$invalid) || (selectedNote.body.$dirty && selectedNote.body.$invalid)">
             Save
         </md-button>
-        <md-button>
+        <md-button ng-click="clearView()">
             Cancel
+        </md-button>
+        <md-button ng-click="deleteNote()">
+            Delete
         </md-button>
     </div>
 </form>

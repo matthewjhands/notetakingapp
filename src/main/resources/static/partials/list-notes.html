@@ -1,28 +1,8 @@
 <h4>Available notes</h4>
 
 <ul class="notes-list">
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
-        <p class="note-timedate"><i>12/11/39</i></p>
-    </li>
-    <li>
-        <p class="note-summary">This is a note</p>
+    <li ng-repeat="note in notes" ng-click="viewNote(note)">
+        <p class="note-summary">{{note.title}}</p>
         <p class="note-timedate"><i>12/11/39</i></p>
     </li>
 </ul>
