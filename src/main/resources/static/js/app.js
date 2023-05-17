@@ -48,11 +48,24 @@
             })
         }
 
-        function isLoggedIn(){
-            return loggedUser != null;
+        function logout (){
+            return $http.get("api/logout").then(function(response){
+                loggedUser = null;
+                return response;
+            }, function(error){
+                loggedUser = null;
+                return response;
+            })
         }
+
+        function isLoggedIn(){
+            // temporary fix - in reality you'd want to define a "whoami" endpoint on the server
+            return document.cookie != "";
+        }
+
         return {
             login : login,
+            logout : logout,
             isLoggedIn: isLoggedIn
         }
   });
@@ -80,6 +93,16 @@
             
         });
     };
+
+    $scope.logout = function(){
+        console.log("Logging out..");
+        AuthService.logout().then(function(data){
+            console.log(data);
+            location.reload();
+        });
+    }
+
+
   });
 
 
